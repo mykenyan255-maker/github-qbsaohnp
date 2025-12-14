@@ -7,12 +7,12 @@ export default function CategoryHero({ category }: CategoryHeroProps) {
     men: {
       title: "Men's Collection",
       subtitle: 'Elevate Your Style with Premium Menswear',
-      image: 'https://postimg.cc/ZBQTMf29',
+      image: 'https://i.postimg.cc/qqJzgSGG/download_(13).jpg',
     },
     women: {
       title: "Women's Collection",
       subtitle: 'Timeless Elegance for the Modern Woman',
-      image: 'https://postimg.cc/dkYXtGCk',
+      image: 'https://i.postimg.cc/XJG0L878/High_quality_ADIRE_print_baggy_pant_One_size_fits_6_16_full_length_19500_Zara_bodysuit_Top_Avail.jpg',
     },
     unisex: {
       title: 'Unisex Collection',

@@ -16,6 +16,8 @@ export interface Product {
   subcategory: string | null;
   description: string | null;
   price: number;
+  price_usd: number | null;
+  currency_code: string | null;
   colors: string[] | null;
   sizes: string[] | null;
   color: string | null;

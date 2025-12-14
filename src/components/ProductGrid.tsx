@@ -3,6 +3,7 @@ import { SlidersHorizontal } from 'lucide-react';
 import { supabase, Product } from '../lib/supabase';
 import ProductCard from './ProductCard';
 import CategoryHero from './CategoryHero';
+import BrowseByType from './BrowseByType';
 
 interface ProductGridProps {
   category: string;
@@ -154,30 +155,9 @@ export default function ProductGrid({ category, searchQuery }: ProductGridProps)
 
       </div>
 
-      {/* Browse by Type Section - Positioned Above Products */}
       {category !== 'all' && filteredProducts.length > 0 && (
         <div className="mb-8 pb-6 border-b border-gray-200">
-          <h3 className="text-lg font-bold mb-4">Browse by Type</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-            {Array.from(new Set(filteredProducts.map(p => p.name)))
-              .sort()
-              .map((productType) => {
-                const count = filteredProducts.filter(p => p.name === productType).length;
-                return (
-                  <button
-                    key={productType}
-                    className="p-3 border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-black transition-all text-left group text-sm"
-                  >
-                    <h4 className="font-semibold text-gray-900 group-hover:text-black transition-colors line-clamp-2 mb-1">
-                      {productType}
-                    </h4>
-                    <p className="text-xs text-gray-500">
-                      {count} {count === 1 ? 'item' : 'items'}
-                    </p>
-                  </button>
-                );
-              })}
-          </div>
+          <BrowseByType />
         </div>
       )}
 

@@ -5,6 +5,7 @@ import { generateWhatsAppLink } from '../lib/whatsapp';
 import { useCart } from '../contexts/CartContext';
 import { useWishlist } from '../contexts/WishlistContext';
 import ProductDetailModal from './ProductDetailModal';
+import { formatKSH } from '../lib/currency';
 
 interface ProductCardProps {
   product: Product;
@@ -104,8 +105,8 @@ export default function ProductCard({ product }: ProductCardProps) {
                 {product.name}
               </h3>
               <div className="flex items-center gap-2">
-                <span className="text-xs font-medium line-through opacity-70">KSh {displayPrice.toLocaleString()}</span>
-                <span className="text-sm font-bold text-green-400">KSh {discountedPrice.toLocaleString()}</span>
+                <span className="text-xs font-medium line-through opacity-70">{formatKSH(displayPrice)}</span>
+                <span className="text-sm font-bold text-green-400">{formatKSH(discountedPrice)}</span>
               </div>
               <div className="grid grid-cols-2 gap-2 pt-1">
                 <button
@@ -140,8 +141,8 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="text-xs font-medium line-through text-white/60">KSh {displayPrice.toLocaleString()}</span>
-          <span className="text-sm font-bold text-white">KSh {discountedPrice.toLocaleString()}</span>
+          <span className="text-xs font-medium line-through text-white/60">{formatKSH(displayPrice)}</span>
+          <span className="text-sm font-bold text-white">{formatKSH(discountedPrice)}</span>
           <span className="text-xs font-bold text-green-400">50% OFF</span>
         </div>
 

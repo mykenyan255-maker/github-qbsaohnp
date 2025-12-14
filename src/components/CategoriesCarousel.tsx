@@ -37,7 +37,7 @@ export default function CategoriesCarousel({ onCategoryClick }: CategoriesCarous
 
     let animationId: number;
     let position = 0;
-    const speed = 0.5;
+    const speed = 0.575;
 
     const animate = () => {
       if (!isDragging) {
@@ -101,7 +101,7 @@ export default function CategoriesCarousel({ onCategoryClick }: CategoriesCarous
           WebkitOverflowScrolling: 'touch',
         }}
       >
-        {[...categories, ...categories].map((cat, index) => (
+        {[...categories, ...categories, ...categories, ...categories].map((cat, index) => (
           <div
             key={index}
             className="flex-shrink-0 w-56 group relative rounded-[16px] overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 bg-[#ff3b30]"
