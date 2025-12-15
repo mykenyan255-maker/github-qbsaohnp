@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { AlertCircle } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useCart } from '../contexts/CartContext';
+import { toUSD, formatUSD } from '../lib/currency';
 
 interface PayPalButtonProps {
   onSuccess?: () => void;
@@ -37,13 +38,14 @@ export default function PayPalButton({ onSuccess, onError }: PayPalButtonProps) 
 
         const buttons = window.paypal.Buttons({
           createOrder: async (data, actions) => {
+            const amountUSD = toUSD(totalAmount);
             const orderID = await actions.order.create({
               intent: 'CAPTURE',
               purchase_units: [
                 {
                   amount: {
-                    currency_code: 'KES',
-                    value: totalAmount.toFixed(2),
+                    currency_code: 'USD',
+                    value: amountUSD.toFixed(2),
                   },
                   description: `Order for ${items.length} product(s)`,
                 },
@@ -118,7 +120,7 @@ export default function PayPalButton({ onSuccess, onError }: PayPalButtonProps) 
       <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg flex items-start gap-2">
         <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
         <p className="text-sm text-blue-700">
-          You will be charged <span className="font-semibold">KSh {totalAmount.toLocaleString()}</span> with PayPal
+          You will be charged <span className="font-semibold">KSh {totalAmount.toLocaleString()}</span> ({formatUSD(toUSD(totalAmount))}) with PayPal
         </p>
       </div>
       <div ref={containerRef} />

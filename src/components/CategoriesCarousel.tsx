@@ -14,13 +14,13 @@ export default function CategoriesCarousel({ onCategoryClick }: CategoriesCarous
     {
       title: 'MEN',
       subcategories: ['T-Shirts & Polos', 'Official Shirts', 'Casual Shirts', 'Suits & Blazers', 'Accessories', 'Outerwear', 'Bottoms'],
-      image: 'https://i.postimg.cc/prHkRFTz/download-(10).jpg',
+      image: 'https://i.postimg.cc/qqJzgSGG/download_(13).jpg',
       category: 'men',
     },
     {
       title: 'WOMEN',
       subcategories: ['Dresses', 'Two-Piece Sets', 'Tops', 'Sweaters', 'Trousers / Jeans', 'Jumpsuits', 'Accessories'],
-      image: 'https://i.postimg.cc/FR97vFv9/download-(11).jpg',
+      image: 'https://i.postimg.cc/XJG0L878/High_quality_ADIRE_print_baggy_pant_One_size_fits_6_16_full_length_19500_Zara_bodysuit_Top_Avail.jpg',
       category: 'women',
     },
     {
@@ -37,7 +37,7 @@ export default function CategoriesCarousel({ onCategoryClick }: CategoriesCarous
 
     let animationId: number;
     let position = 0;
-    const speed = 0.575;
+    const speed = 0.661;
 
     const animate = () => {
       if (!isDragging) {
@@ -101,7 +101,7 @@ export default function CategoriesCarousel({ onCategoryClick }: CategoriesCarous
           WebkitOverflowScrolling: 'touch',
         }}
       >
-        {[...categories, ...categories, ...categories, ...categories].map((cat, index) => (
+        {[...categories, ...categories, ...categories, ...categories, ...categories, ...categories, ...categories, ...categories].map((cat, index) => (
           <div
             key={index}
             className="flex-shrink-0 w-56 group relative rounded-[16px] overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105 bg-[#ff3b30]"

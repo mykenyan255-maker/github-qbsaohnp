@@ -1,18 +1,34 @@
 import { useRef, useEffect, useState } from 'react';
+import { supabase } from '../lib/supabase';
+
+interface Category {
+  id: string;
+  name: string;
+  slug: string;
+  image_url: string;
+}
 
 export default function BrowseByType() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
+  const [categories, setCategories] = useState<Category[]>([]);
 
-  const categories = [
-    { name: 'MEN', category: 'men' },
-    { name: 'WOMEN', category: 'women' },
-    { name: 'UNISEX', category: 'unisex' },
-  ];
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const { data } = await supabase
+        .from('categories')
+        .select('id, name, slug, image_url')
+        .order('display_order', { ascending: true });
 
-  const image = 'https://i.postimg.cc/PxWgxz9K/Soft-Leather-Duffel-Bag-40L-Convertible-Travel-Bag.jpg';
+      if (data) {
+        setCategories(data);
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   useEffect(() => {
     const container = scrollContainerRef.current;
@@ -90,7 +106,7 @@ export default function BrowseByType() {
           >
             <div
               className="w-full h-full bg-cover bg-center"
-              style={{ backgroundImage: `url(${image})` }}
+              style={{ backgroundImage: `url(${cat.image_url})` }}
             >
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70"></div>
               <div className="absolute inset-0 flex items-end justify-center pb-2">
